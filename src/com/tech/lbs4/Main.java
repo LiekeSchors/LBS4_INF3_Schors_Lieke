@@ -46,10 +46,14 @@ public class Main {
     /**
      * Tries to convert the user input into a double, until the value is valid for further processing.
      *
-     * @param minValue The lowest valid value.
-     * @param maxValue The highest valid value.
-     * @return The user input as a double.
-     * @throws NumberFormatException, if the input value could not be parsed into a double value.
+     * @param minValue
+     *      The lowest valid value.
+     * @param maxValue
+     *      The highest valid value.
+     * @return
+     *      The user input as a double.
+     * @throws
+     *      NumberFormatException, if the input value could not be parsed into a double value.
      */
     private static double readUserInput(double minValue, double maxValue) {
         boolean invalidValue = true;
