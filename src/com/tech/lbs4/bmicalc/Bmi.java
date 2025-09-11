@@ -1,6 +1,6 @@
 package com.tech.lbs4.bmicalc;
 
-import static com.tech.lbs4.Main.*;
+import static com.tech.lbs4.AnsiColors.*;
 
 public class Bmi {
     private double weight;
@@ -52,10 +52,10 @@ public class Bmi {
         return "Your BMI is: " + String.format("%.2f", bmi.getBmi()) + " (" + bmiDescription + ")";
     }
 
-    private double calculateBmi(double weigth, double height) {
+    private double calculateBmi(double weight, double height) {
         double bmi = -1;
         try {
-            bmi = weigth / (height * height);
+            bmi = weight / (height * height);
         } catch (ArithmeticException e) { // This does not make a lot of sense, since the user input cannot be 0 (see Main.java)
             System.out.println(ANSI_RED + "An error occurred while calculating the bmi. (Division by 0)" + ANSI_RESET);
         } finally {
