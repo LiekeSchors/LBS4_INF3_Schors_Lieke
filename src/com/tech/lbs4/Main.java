@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Welcome to THE BMI-calculator!");
-        System.out.println(ANSI_RED + "Caution! The BMI of Babys and small children cannot be calculated accurately with this tool!" + ANSI_RESET);
+        System.out.println(ANSI_RED + "Caution! This tool only calculates meaningful results for adults." + ANSI_RESET);
 
         boolean endProgram = false;
 
@@ -21,13 +21,13 @@ public class Main {
             Bmi participantBmi = new Bmi();
 
             System.out.println("Please enter your height in meters (m): ");
-            double minHeight = 0; // Should it be higher?
+            double minHeight = 1.4;
             double maxHeight = 2.5;
             double height = readUserInput(minHeight, maxHeight);
             participantBmi.setHeight(height);
 
             System.out.println("Please enter your weight in kilograms (kg): ");
-            double minWeight = 0; // Should it be higher?
+            double minWeight = 30;
             double maxWeight = 250;
             double weight = readUserInput(minWeight, maxWeight);
             participantBmi.setWeigth(weight);
@@ -48,8 +48,12 @@ public class Main {
      *
      * @param minValue The lowest valid value.
      * @param maxValue The hightest valid value.
-     * @return The user input as a double.
-     * @throws NumberFormatException, if the input value could not be parsed into a double value.
+     *
+     * @return
+     *      The user input as a double.
+     *
+     * @throws
+     *      NumberFormatException, if the input value could not be parsed into a double value.
      */
     private static double readUserInput(double minValue, double maxValue) {
         boolean invalidValue = true;
