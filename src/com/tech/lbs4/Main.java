@@ -8,8 +8,14 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
 
     // Colors for the console
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_YELLOW  = "\u001B[33m";
+    public static final String ANSI_WHITE   = "\u001B[37m";
 
     public static void main(String[] args) {
         System.out.println("Welcome to THE BMI-calculator!");
@@ -21,24 +27,25 @@ public class Main {
             Bmi participantBmi = new Bmi();
 
             System.out.println("Please enter your height in meters (m): ");
-            double minHeight = 1.4;
+            double minHeight = 1.4; // Values below usually don't make meaningful results.
             double maxHeight = 2.5;
             double height = readUserInput(minHeight, maxHeight);
             participantBmi.setHeight(height);
 
             System.out.println("Please enter your weight in kilograms (kg): ");
-            double minWeight = 30;
+            double minWeight = 30; // Values below usually don't make meaningful results.
             double maxWeight = 250;
             double weight = readUserInput(minWeight, maxWeight);
-            participantBmi.setWeigth(weight);
+            participantBmi.setWeight(weight);
 
             String result = participantBmi.createResult(participantBmi);
             System.out.println(result);
 
-            System.out.println("Do you want to use the calculator again? Enter 'y' for yes, 'n' for no");
+            System.out.println("\nDo you want to use the calculator again? Enter 'y' for yes, 'n' for no");
             String answer = scanner.next();
             if (answer.equalsIgnoreCase("n")) {
                 endProgram = true;
+                System.out.println(ANSI_RED + "Stopping the calculator..." + ANSI_RESET);
             }
         }
     }
@@ -46,8 +53,10 @@ public class Main {
     /**
      * Tries to convert the user input into a double, until the value is valid for further processing.
      *
-     * @param minValue The lowest valid value.
-     * @param maxValue The hightest valid value.
+     * @param minValue
+     *      The lowest valid value.
+     * @param maxValue
+     *      The highest valid value.
      *
      * @return
      *      The user input as a double.
@@ -63,7 +72,7 @@ public class Main {
             try {
                 userInput = Double.parseDouble(scanner.next());
 
-                if (userInput > minValue && userInput <= maxValue) {
+                if (userInput >= minValue && userInput <= maxValue) {
                     invalidValue = false;
                 } else {
                     System.out.println("Please enter a value between " + minValue + " and " + maxValue + ".");
