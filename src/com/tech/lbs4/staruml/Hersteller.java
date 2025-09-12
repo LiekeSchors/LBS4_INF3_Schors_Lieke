@@ -24,7 +24,7 @@ public class Hersteller {
             System.out.println("Das Fahrzeug kann nicht verkauft werden, da kein Preis gesetzt ist.");
             return 0.0;
         } else {
-            System.out.println(name + " verkauft ein Fahrzeug um " + verkaufspreis + "€" );
+            System.out.println(name + " verkauft ein Fahrzeug um " + String.format("%.2f", verkaufspreis) + "€" );
         }
 
         return verkaufspreis;
