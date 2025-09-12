@@ -1,6 +1,4 @@
-package com.tech.lbs4;
-
-import com.tech.lbs4.bmicalc.Bmi;
+package com.tech.lbs4.bmicalc;
 
 import java.util.Scanner;
 
