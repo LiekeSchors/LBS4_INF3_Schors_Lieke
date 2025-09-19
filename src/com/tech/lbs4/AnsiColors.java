@@ -1,5 +1,12 @@
 package com.tech.lbs4;
 
+/**
+ * Klasse, die Konstanten für die Textfarben in der Konsole bereitstellt.
+ *
+ * @author Lieke Schors
+ * @since 0.1
+ * @version 3.0
+ */
 public class AnsiColors {
     // Colors for the console
     public static final String ANSI_BLUE = "\u001B[34m";

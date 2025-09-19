@@ -1,5 +1,17 @@
 package com.tech.lbs4.staruml;
 
+import io.github.classgraph.ClassGraph;
+import io.github.classgraph.ClassInfo;
+import io.github.classgraph.ScanResult;
+
+import java.lang.annotation.Annotation;
+
+/**
+ * Klasse, die die Main-Methode enthält.
+ *
+ * @author Lieke Schors
+ * @version 1.0
+ */
 public class Main {
     public static void main(String[] args) {
         Hersteller audi = new Hersteller("Audi");
@@ -19,6 +31,7 @@ public class Main {
         audiSuv.set_4x4(true);
         audiSuv.setFarbe("Schwarz");
         audiSuv.blinken();
+        audiSuv.setPreis(50_000);
 
         Suv bmwSuv = new Suv();
         bmwSuv.setHersteller(bmw);
@@ -39,6 +52,7 @@ public class Main {
         monsterTruck.starten(); // Möglich, weil die Klasse von Fahrzeug ableitet
         monsterTruck.huepfen();
         monsterTruck.blinken();
+        // monsterTruck.verkaufen(); Nicht möglich, weil Klasse Interface Verkaufbar nicht implementiert.
 
         System.out.println("\nLKW");
         Lkw lkw = new Lkw(); // Ist ein Fahrzeug
@@ -47,20 +61,48 @@ public class Main {
         lkw.beschleunigen();
         lkw.schalten(true);
         // lkw.huepfen(); ist nicht möglich, weil der LKW kein Monstertruck ist.
+        lkw.setPreis(100_000);
+        // audiSuv.ladungEntkoppeln(); Geht nicht, da audiSuv nicht von LKW ableitet.
+        Hersteller lkwHersteller = new Hersteller("LKW-Hersteller");
+        lkw.setHersteller(lkwHersteller);
 
-         // audiSuv.ladungEntkoppeln(); Geht nicht, da audiSuv nicht von LKW ableitet.
-
-        Fahrzeug fahrzeug = new Fahrzeug();
         Motor motor = new Motor(audi, 300, MotorTyp.VERBRENNUNG);
-        fahrzeug.setMotor(motor);
-        // fahrzeug.setFederung(); nicht möglich, weil Fahrzeug die übergeordnete Klasse zu Monstertruck ist.
-        // fahrzeug.setFarbe(); Ist übergeordnet zu PKW, daher kann die Klasse das Attribut nicht verwenden.
-        MotorTyp motorTyp = fahrzeug.getMotor().getMotorTyp();// Jedes Fahrzeug muss einen Motor haben. Über diesen
-        // Motor kann auch auf den Motortyp des Fahrzeuges zugegriffen werden. Es handelt sich um eine Kompostion.
-        // Motor = Teil, Fahrzeug = Ganzes.
+        // motor.verkaufen(); geht nicht, weil die Klasse Verkaufbar nicht implementiert
+        // motor.getPreis(); geht nicht, weil der Motor kein Fahrzeug ist (in diesem Sinne)
 
         audiSuv.setPreis(25000);
-        double verkaufspreisAudiSuv = audi.verkaufen(audiSuv);
-        System.out.println(audi.getName() + " ist um " + String.format("%.2f", verkaufspreisAudiSuv) + "€ reicher.");
+        double verkaufspreisAudiSuv = audiSuv.verkaufen();
+        System.out.println("UVP: " + String.format("%.2f", audiSuv.getPreis()) + "€; Verkaufspreis: " + String.format("%.2f", verkaufspreisAudiSuv) + "€, "+ audi.getName() + " ist um " + String.format("%.2f", verkaufspreisAudiSuv) + "€ reicher.");
+
+        double verkaufspreisLkw = lkw.verkaufen();
+        System.out.println("UVP: " + String.format("%.2f", lkw.getPreis()) + "€; Verkaufspreis: " + String.format("%.2f", verkaufspreisLkw) + "€, "+ lkwHersteller.getName() + " ist um " + String.format("%.2f", verkaufspreisLkw) + "€ reicher.");
+
+
+
+        //ToDo(aufgabe = "Fixen", bisDatum = "20.09.2025")
+//        System.out.println("To-dos:\n");
+//        try (ScanResult scanResult = new ClassGraph()
+//                .enableClassInfo()
+//                .acceptPackages("com.tech.lbs4.staruml")
+//                .enableAnnotationInfo()
+//                .scan()) {
+//
+//            for (ClassInfo classInfo : scanResult.getClassesWithAnnotation(ToDo.class.getName())) {
+//                Class<?> clazz = classInfo.loadClass();
+//                Annotation[] annotations = clazz.getAnnotations();
+//
+//                for (Annotation annotation : annotations) {
+//                    annotation.annotationType();
+//                    if (annotation.annotationType().getName().equals(ToDo.class.getTypeName())) {
+//                        ToDo todo = clazz.getAnnotation(ToDo.class);
+//                        System.out.println("Klasse: " + clazz.getName());
+//                        System.out.println("Aufgabe: " + todo.aufgabe());
+//                        System.out.println("Bis Datum: " + todo.bisDatum());
+//                        System.out.println("Pflicht? " + todo.pflicht());
+//                        System.out.println(); // Leerzeile zur Trennung
+//                    }
+//                }
+//            }
+//        }
     }
 }

@@ -1,7 +1,6 @@
 package com.tech.lbs4.staruml;
 
-public class Fahrzeug { // Die Klasse könnte man abstract machen, sodass keine Instanzen davon erzeugt werden können und immer ein spezifisches Fahrzeug angelegt werden muss.
-    // In der Realität wäre das wohl sinnvoller. Zur Veranschaulichung des Themas Vererbung bietet sich die normale Klasse m.E. besser an.
+public abstract class Fahrzeug {
     private String reifen;
     private Motor motor; // Wenn man Fahrräder einschließen möchte, gehört dieses Attribut weg.
     private LenkradTyp lenkradTyp;
@@ -12,11 +11,7 @@ public class Fahrzeug { // Die Klasse könnte man abstract machen, sodass keine 
     private boolean faehrt;
     private int aktuellerGang;
 
-    public Fahrzeug() {
-        faehrt = false;
-        aktuellerGang = 0;
-    }
-
+    @SuppressWarnings("unused")
     public String getReifen() {
         return reifen;
     }
@@ -33,30 +28,37 @@ public class Fahrzeug { // Die Klasse könnte man abstract machen, sodass keine 
         this.motor = motor;
     }
 
+    @SuppressWarnings("unused")
     public LenkradTyp getLenkradTyp() {
         return lenkradTyp;
     }
 
+    @SuppressWarnings("unused")
     public void setLenkradTyp(LenkradTyp lenkradTyp) {
         this.lenkradTyp = lenkradTyp;
     }
 
+    @SuppressWarnings("unused")
     public double getHoechstGeschwindigkeit() {
         return hoechstGeschwindigkeit;
     }
 
+    @SuppressWarnings("unused")
     public void setHoechstGeschwindigkeit(double hoechstGeschwindigkeit) {
         this.hoechstGeschwindigkeit = hoechstGeschwindigkeit;
     }
 
+    @SuppressWarnings("unused")
     public double getAnzahlSitzplaetze() {
         return anzahlSitzplaetze;
     }
 
+    @SuppressWarnings("unused")
     public void setAnzahlSitzplaetze(double anzahlSitzplaetze) {
         this.anzahlSitzplaetze = anzahlSitzplaetze;
     }
 
+    @SuppressWarnings("unused")
     public Hersteller getHersteller() {
         return hersteller;
     }
@@ -73,10 +75,12 @@ public class Fahrzeug { // Die Klasse könnte man abstract machen, sodass keine 
         this.preis = preis;
     }
 
+    @SuppressWarnings("unused")
     public boolean isFaehrt() {
         return faehrt;
     }
 
+    @SuppressWarnings("unused")
     public void setFaehrt(boolean faehrt) {
         this.faehrt = faehrt;
     }
@@ -96,6 +100,11 @@ public class Fahrzeug { // Die Klasse könnte man abstract machen, sodass keine 
         }
     }
 
+    /**
+     * Diese Methode lässt ein Fahrzeug blinken.
+     *
+     * @author Lieke Schors
+     */
     public void blinken() {
         if (hersteller != null) {
             if (hersteller.getName().equalsIgnoreCase("bmw")) {
@@ -107,48 +116,10 @@ public class Fahrzeug { // Die Klasse könnte man abstract machen, sodass keine 
     }
 
     /**
-     * Mit dieser Methode wird simuliert, wie ein LKW vs. ein anderes Fahrzeug beschleunigt. Die Zeiten und Geschwindigkeiten
-     * entsprechen höchstwahrscheinlich nicht der Wirklichkeit.
+     * Mit dieser Methode wird simuliert, wie ein LKW vs. ein anderes Fahrzeug beschleunigt.
+     *
+     * @author Lieke Schors
      */
-    public void beschleunigen() {
-        /* Bei Verwendung einer abstrakten Klasse könnte diese Methode z.B. abstrakt gemacht werden. Die Unterklassen
-         müssen sich dann selbst um die Implementierung kümmern und hier würde nicht so viel Code stehen. Andere Methoden
-         könnten in dieser Klasse dennoch schon bereitgestellt werden.*/
-        System.out.println("10 KMH");
-        if (this instanceof Lkw) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException _) {
-            }
-            System.out.println("20 KMH");
+    public abstract void beschleunigen();
 
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException _) {
-            }
-            System.out.println("30 KMH");
-
-            try {
-                Thread.sleep(3500);
-            } catch (InterruptedException _) {
-            }
-            System.out.println("40 KMH");
-        } else {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException _) {
-            }
-            System.out.println("30 KMH");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException _) {
-            }
-            System.out.println("60 KMH");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException _) {
-            }
-            System.out.println("100 KMH");
-        }
-    }
 }
