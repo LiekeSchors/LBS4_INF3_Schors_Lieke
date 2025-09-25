@@ -1,0 +1,85 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.7" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundlePackage": "com.tech.lbs4.javaapplication"
+	"i18n.bundleName": "currencycalc"
+	"i18n.keyPrefix": "CurrencyCalculatorWindow"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+			"$columnSpecs": "unrelgap, default, labelcompgap, default, labelcompgap, default"
+			"$rowSpecs": "unrelgap, default, relgap, default, relgap, default"
+		} ) {
+			name: "panel1"
+			"minimumSize": new java.awt.Dimension( 336, 258 )
+			"maximumSize": new java.awt.Dimension( 1900, 1800 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "amountFromLabel"
+				"text": new FormMessage( null, "CurrencyCalculatorWindow.amountFromLabel.text" )
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+				"gridX": 2
+				"gridY": 2
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "currencyFromComboBox"
+				auxiliary() {
+					"JavaCodeGenerator.typeParameters": "Currency"
+					"JavaCodeGenerator.customCreateCode": "new JCombobox(Currency.values());"
+				}
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+				"gridX": 4
+				"gridY": 2
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "currencyFromTextField"
+				"horizontalAlignment": 4
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+				"gridX": 6
+				"gridY": 2
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "amountToLabel"
+				"text": new FormMessage( null, "CurrencyCalculatorWindow.amountToLabel.text" )
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+				"gridY": 4
+				"gridX": 2
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "currencyToCombobox"
+				auxiliary() {
+					"JavaCodeGenerator.typeParameters": "Currency"
+					"JavaCodeGenerator.customCreateCode": "new JCombobox(Currency.values());"
+				}
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+				"gridX": 4
+				"gridY": 4
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "currencyToTextField"
+				"editable": false
+				"horizontalAlignment": 4
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+					"JavaCodeGenerator.variableName": "currencyToTextField"
+				}
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+				"gridX": 6
+				"gridY": 4
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "calcButton"
+				"text": new FormMessage( null, "CurrencyCalculatorWindow.calcButton.text" )
+				"background": new java.awt.Color( 241, 155, 47, 255 )
+				"focusTraversalPolicyProvider": true
+				"font": new java.awt.Font( "Inter", 1, 13 )
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+				"gridX": 6
+				"gridY": 6
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 70, 80 )
+			"size": new java.awt.Dimension( 330, 150 )
+		} )
+	}
+}

@@ -25,8 +25,10 @@ public class CurrencyCalculatorView implements ActionListener {
         frame = new JFrame("Währungsrechner");
         frame.setSize(500, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout(3, 3, 5, 5));
 
         currencyFromLabel = new JLabel("Betrag in: ");
+        currencyFromLabel.putClientProperty("JComponent.sizeVariant", "mini");
         currencyFromCombobox = new JComboBox<>(Currency.values());
         currencyFromCombobox.setSelectedIndex(0);
         amountFromTextField = new JTextField();
@@ -41,8 +43,11 @@ public class CurrencyCalculatorView implements ActionListener {
         amountToTextField.setFont(new Font("Arial", Font.BOLD, 12));
         amountToTextField.setBorder(null);
         amountToTextField.setHorizontalAlignment(JTextField.RIGHT);
+
+
         calcButton = new JButton("Berechnen");
         calcButton.addActionListener(this);
+        calcButton.setBackground(Color.orange);
 
         // First Row
         frame.add(currencyFromLabel);
@@ -55,10 +60,18 @@ public class CurrencyCalculatorView implements ActionListener {
         frame.add(amountToTextField);
 
         // Third Row
+        JTextField fillComp1 = new JTextField();
+        fillComp1.setBorder(null);
+        fillComp1.setEditable(false);
+        frame.add(fillComp1);
+
+        JTextField fillComp2 = new JTextField();
+        fillComp2.setBorder(null);
+        fillComp2.setEditable(false);
+        frame.add(fillComp2);
         frame.add(calcButton, -1);
 
-        frame.setLayout(new GridLayout(3, 3));
-
+        SwingUtilities.updateComponentTreeUI(frame);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
