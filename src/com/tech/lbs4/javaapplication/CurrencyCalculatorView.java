@@ -1,84 +1,122 @@
+/*
+ * Created by JFormDesigner on Fri Sep 26 08:01:35 CEST 2025
+ */
+
 package com.tech.lbs4.javaapplication;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.*;
+import javax.swing.*;
 
+import com.jgoodies.forms.factories.*;
+import com.jgoodies.forms.layout.*;
+import jdk.javadoc.doclet.Taglet;
+
+/**
+ * @author Lieke.SCHORS
+ */
 public class CurrencyCalculatorView implements ActionListener {
 
-    private JFrame frame;
     private Currency currencyFrom;
-    private Currency currencyTo;
-    private JLabel currencyFromLabel;
     private double amountFrom;
-    private JTextField amountFromTextField;
-    private JComboBox<Currency> currencyFromCombobox;
-    private JLabel currencyToLabel;
-    private JComboBox<Currency> currencyToCombobox;
-    private JTextField amountToTextField;
 
-    private JButton calcButton;
+    private Currency currencyTo;
 
 
-    public void generateFrame() {
-        frame = new JFrame("Währungsrechner");
-        frame.setSize(500, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(3, 3, 5, 5));
 
-        currencyFromLabel = new JLabel("Betrag in: ");
-        currencyFromLabel.putClientProperty("JComponent.sizeVariant", "mini");
-        currencyFromCombobox = new JComboBox<>(Currency.values());
-        currencyFromCombobox.setSelectedIndex(0);
+    private void initComponents() {
+        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
+        // Generated using JFormDesigner Evaluation license - Lieke Schors
+        ResourceBundle bundle = ResourceBundle.getBundle("com.tech.lbs4.javaapplication.currencycalc");
+        mainFrame = new JFrame();
+        mainFrame.getContentPane().setBackground(new Color(0x2eb2f6));
+        amountFromLabel = new JLabel();
+        currencyFromComboBox = new JComboBox<>(Currency.values());
         amountFromTextField = new JTextField();
-        amountFromTextField.setHorizontalAlignment(JTextField.RIGHT);
-
-        currencyToLabel = new JLabel("Betrag in: ");
+        amountToLabel = new JLabel();
         currencyToCombobox = new JComboBox<>(Currency.values());
-        currencyToCombobox.setSelectedIndex(1);
+        currencyToTextField = new JTextField();
+        calcButton = new JButton();
+        desktopPane1 = new JDesktopPane();
 
-        amountToTextField = new JTextField();
-        amountToTextField.setEditable(false);
-        amountToTextField.setFont(new Font("Arial", Font.BOLD, 12));
-        amountToTextField.setBorder(null);
-        amountToTextField.setHorizontalAlignment(JTextField.RIGHT);
+        //======== mainFrame ========
+        {
+            mainFrame.setMinimumSize(new Dimension(336, 258));
+            mainFrame.setMaximumSize(new Dimension(1900, 1800));
+            mainFrame.setName("W\u00e4hrungsrechner");
+            mainFrame.setTitle("W\u00e4hrungsrechner");
+            mainFrame.setBackground(new Color(0x2eb2f6));
+            mainFrame.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+            mainFrame.setPreferredSize(new Dimension(500, 300));
+            mainFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            mainFrame.setFocusTraversalPolicyProvider(true);
+            mainFrame.setFont(new Font("Javanese Text", Font.PLAIN, 16));
+            mainFrame.setForeground(Color.black);
+            var mainFrameContentPane = mainFrame.getContentPane();
+            mainFrameContentPane.setLayout(new FormLayout(
+                "50dlu, 2*(default, $lcgap), default",
+                "50dlu, 2*(default, $rgap), default, $lgap, default"));
+            mainFrame.getRootPane().setDefaultButton(calcButton);
 
+            //---- amountFromLabel ----
+            amountFromLabel.setText(bundle.getString("CurrencyCalculatorWindow.amountFromLabel.text"));
+            mainFrameContentPane.add(amountFromLabel, CC.xy(2, 2));
+            mainFrameContentPane.add(currencyFromComboBox, CC.xy(4, 2));
 
-        calcButton = new JButton("Berechnen");
-        calcButton.addActionListener(this);
-        calcButton.setBackground(Color.orange);
+            //---- amountFromTextField ----
+            amountFromTextField.setHorizontalAlignment(SwingConstants.RIGHT);
+            mainFrameContentPane.add(amountFromTextField, CC.xy(6, 2));
 
-        // First Row
-        frame.add(currencyFromLabel);
-        frame.add(currencyFromCombobox);
-        frame.add(amountFromTextField);
+            //---- amountToLabel ----
+            amountToLabel.setText(bundle.getString("CurrencyCalculatorWindow.amountToLabel.text"));
+            mainFrameContentPane.add(amountToLabel, CC.xy(2, 4));
+            mainFrameContentPane.add(currencyToCombobox, CC.xy(4, 4));
 
-        // Second Row
-        frame.add(currencyToLabel);
-        frame.add(currencyToCombobox);
-        frame.add(amountToTextField);
+            //---- currencyToTextField ----
+            currencyToTextField.setEditable(false);
+            currencyToTextField.setHorizontalAlignment(SwingConstants.RIGHT);
+            mainFrameContentPane.add(currencyToTextField, CC.xy(6, 4));
 
-        // Third Row
-        JTextField fillComp1 = new JTextField();
-        fillComp1.setBorder(null);
-        fillComp1.setEditable(false);
-        frame.add(fillComp1);
+            //---- calcButton ----
+            calcButton.setText(bundle.getString("CurrencyCalculatorWindow.calcButton.text"));
+            calcButton.setBackground(new Color(0xf19b2f));
+            calcButton.setFocusTraversalPolicyProvider(true);
+            calcButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+            calcButton.addActionListener(this);
+            calcButton.setMnemonic(KeyEvent.VK_ENTER);
+            mainFrameContentPane.add(calcButton, CC.xy(6, 6));
+            mainFrameContentPane.add(desktopPane1, CC.xy(1, 8));
+            mainFrame.pack();
+            mainFrame.setLocationRelativeTo(null);
+        }
+        // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
+    }
 
-        JTextField fillComp2 = new JTextField();
-        fillComp2.setBorder(null);
-        fillComp2.setEditable(false);
-        frame.add(fillComp2);
-        frame.add(calcButton, -1);
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    // Generated using JFormDesigner Evaluation license - Lieke Schors
+    private JFrame mainFrame;
+    private JLabel amountFromLabel;
+    private JComboBox<Currency> currencyFromComboBox;
+    private JTextField amountFromTextField;
+    private JLabel amountToLabel;
+    private JComboBox<Currency> currencyToCombobox;
+    private JTextField currencyToTextField;
+    private JButton calcButton;
+    private JDesktopPane desktopPane1;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-        SwingUtilities.updateComponentTreeUI(frame);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+    public void getMainFrame() {
+        initComponents();
+        currencyToCombobox.setSelectedIndex(Currency.USD.ordinal());
+        mainFrame.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        currencyFrom = (Currency) currencyFromCombobox.getSelectedItem();
+        currencyFrom = (Currency) currencyFromComboBox.getSelectedItem();
         currencyTo = (Currency) currencyToCombobox.getSelectedItem();
         setAmountFromDoubleValue();
 
@@ -93,7 +131,7 @@ public class CurrencyCalculatorView implements ActionListener {
                         case STERLING -> calculatedResult = amountFrom * Currency.EURO.getErSterling();
                         case AUD -> calculatedResult = amountFrom * Currency.EURO.getErAud();
                         default -> {
-                            JOptionPane.showMessageDialog(frame, waehrungNichtUnterstuetztMessage, "Info", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(mainFrame, waehrungNichtUnterstuetztMessage, "Info", JOptionPane.WARNING_MESSAGE);
                             return;
                         }
                     }
@@ -105,7 +143,7 @@ public class CurrencyCalculatorView implements ActionListener {
                         case STERLING -> calculatedResult = amountFrom * Currency.USD.getErSterling();
                         case AUD -> calculatedResult = amountFrom * Currency.USD.getErAud();
                         default -> {
-                            JOptionPane.showMessageDialog(frame, waehrungNichtUnterstuetztMessage, "Info", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(mainFrame, waehrungNichtUnterstuetztMessage, "Info", JOptionPane.WARNING_MESSAGE);
                             return;
                         }
                     }
@@ -117,7 +155,7 @@ public class CurrencyCalculatorView implements ActionListener {
                         case STERLING -> calculatedResult = amountFrom;
                         case AUD -> calculatedResult = amountFrom * Currency.STERLING.getErAud();
                         default -> {
-                            JOptionPane.showMessageDialog(frame, waehrungNichtUnterstuetztMessage, "Info", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(mainFrame, waehrungNichtUnterstuetztMessage, "Info", JOptionPane.WARNING_MESSAGE);
                             return;
                         }
                     }
@@ -129,22 +167,22 @@ public class CurrencyCalculatorView implements ActionListener {
                         case STERLING -> calculatedResult = amountFrom * Currency.AUD.getErSterling();
                         case AUD -> calculatedResult = amountFrom;
                         default -> {
-                            JOptionPane.showMessageDialog(frame, waehrungNichtUnterstuetztMessage, "Info", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(mainFrame, waehrungNichtUnterstuetztMessage, "Info", JOptionPane.WARNING_MESSAGE);
                             return;
                         }
                     }
                     break;
                 default:
-                    JOptionPane.showMessageDialog(frame, waehrungNichtUnterstuetztMessage, "Info", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(mainFrame, waehrungNichtUnterstuetztMessage, "Info", JOptionPane.WARNING_MESSAGE);
                     return;
             }
         } else {
-            JOptionPane.showMessageDialog(frame,
+            JOptionPane.showMessageDialog(mainFrame,
                     "Bitte wählen Sie beide Währungen aus.", "Hinweis",
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-        amountToTextField.setText(String.format("%.3f", calculatedResult) + " " + currencyTo);
+        currencyToTextField.setText(String.format("%.3f", calculatedResult) + " " + currencyTo);
     }
 
     /**
@@ -152,18 +190,14 @@ public class CurrencyCalculatorView implements ActionListener {
      * Unless it is a valid double, the user is asked to change the input.
      */
     private void setAmountFromDoubleValue() {
-        boolean allowedValued = false;
-
-        do {
             try {
-                amountFrom = Double.parseDouble(amountFromTextField.getText());
-                allowedValued = true;
+                amountFrom = Double.parseDouble(amountFromTextField.getText().replace(',', '.'));
             } catch (NumberFormatException e) {
                 amountFrom = 0;
-                String errorMessage = "Bitte geben Sie eine Zahl ein und verwenden Sie als . anstatt , für Dezimalwerte.";
-                JOptionPane.showMessageDialog(frame, errorMessage, "Fehler", JOptionPane.ERROR_MESSAGE);
-                amountFromTextField.setText("Fehler");
+                String errorMessage = "Bitte geben Sie eine Zahl ein.";
+                JOptionPane.showMessageDialog(mainFrame, errorMessage, "Fehler", JOptionPane.ERROR_MESSAGE);
+                amountFromTextField.setText("");
+                amountFromTextField.requestFocusInWindow();
             }
-        } while (!allowedValued);
     }
 }

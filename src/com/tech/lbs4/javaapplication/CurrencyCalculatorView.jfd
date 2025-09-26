@@ -7,13 +7,27 @@ new FormModel {
 	"i18n.keyPrefix": "CurrencyCalculatorWindow"
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-			"$columnSpecs": "unrelgap, default, labelcompgap, default, labelcompgap, default"
-			"$rowSpecs": "unrelgap, default, relgap, default, relgap, default"
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+			"$columnSpecs": "50dlu, default, labelcompgap, default, labelcompgap, default"
+			"$rowSpecs": "50dlu, default, relgap, default, relgap, default, linegap, default"
 		} ) {
-			name: "panel1"
+			name: "mainFrame"
 			"minimumSize": new java.awt.Dimension( 336, 258 )
 			"maximumSize": new java.awt.Dimension( 1900, 1800 )
+			"name": "Währungsrechner"
+			"title": "Währungsrechner"
+			"background": new java.awt.Color( 46, 178, 246, 255 )
+			"componentOrientation": sfield java.awt.ComponentOrientation LEFT_TO_RIGHT
+			"preferredSize": new java.awt.Dimension( 500, 300 )
+			"defaultCloseOperation": 0
+			"focusTraversalPolicyProvider": true
+			"font": new java.awt.Font( "Javanese Text", 0, 16 )
+			"foreground": sfield java.awt.Color black
+			"$locationPolicy": 1
+			auxiliary() {
+				"JavaCodeGenerator.postCreateCode": "mainFrame.getContentPane().setBackground(new Color(0x2eb2f6));"
+				"JavaCodeGenerator.postInitCode": "mainFrame.getRootPane().setDefaultButton(calcButton);"
+			}
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "amountFromLabel"
 				"text": new FormMessage( null, "CurrencyCalculatorWindow.amountFromLabel.text" )
@@ -25,14 +39,14 @@ new FormModel {
 				name: "currencyFromComboBox"
 				auxiliary() {
 					"JavaCodeGenerator.typeParameters": "Currency"
-					"JavaCodeGenerator.customCreateCode": "new JCombobox(Currency.values());"
+					"JavaCodeGenerator.customCreateCode": "new JComboBox<>(Currency.values());"
 				}
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 				"gridX": 4
 				"gridY": 2
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "currencyFromTextField"
+				name: "amountFromTextField"
 				"horizontalAlignment": 4
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 				"gridX": 6
@@ -49,18 +63,17 @@ new FormModel {
 				name: "currencyToCombobox"
 				auxiliary() {
 					"JavaCodeGenerator.typeParameters": "Currency"
-					"JavaCodeGenerator.customCreateCode": "new JCombobox(Currency.values());"
+					"JavaCodeGenerator.customCreateCode": "new JComboBox<>(Currency.values());"
 				}
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 				"gridX": 4
 				"gridY": 4
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "currencyToTextField"
+				name: "amountToTextField"
 				"editable": false
 				"horizontalAlignment": 4
 				auxiliary() {
-					"JavaCodeGenerator.variableGetter": true
 					"JavaCodeGenerator.variableName": "currencyToTextField"
 				}
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
@@ -72,14 +85,22 @@ new FormModel {
 				"text": new FormMessage( null, "CurrencyCalculatorWindow.calcButton.text" )
 				"background": new java.awt.Color( 241, 155, 47, 255 )
 				"focusTraversalPolicyProvider": true
-				"font": new java.awt.Font( "Inter", 1, 13 )
+				"font": new java.awt.Font( "Tahoma", 1, 20 )
+				auxiliary() {
+					"JavaCodeGenerator.postInitCode": "calcButton.addActionListener(this);\ncalcButton.setMnemonic(KeyEvent.VK_ENTER);"
+				}
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 				"gridX": 6
 				"gridY": 6
 			} )
+			add( new FormContainer( "javax.swing.JDesktopPane", new FormLayoutManager( class javax.swing.JDesktopPane ) ) {
+				name: "desktopPane1"
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+				"gridY": 8
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 70, 80 )
-			"size": new java.awt.Dimension( 330, 150 )
+			"size": new java.awt.Dimension( 610, 370 )
 		} )
 	}
 }
