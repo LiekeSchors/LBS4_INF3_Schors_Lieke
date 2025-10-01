@@ -1,11 +1,5 @@
 package com.tech.lbs4.staruml;
 
-import io.github.classgraph.ClassGraph;
-import io.github.classgraph.ClassInfo;
-import io.github.classgraph.ScanResult;
-
-import java.lang.annotation.Annotation;
-
 /**
  * Klasse, die die Main-Methode enthält.
  *
@@ -25,7 +19,7 @@ public class Main {
         // pkw.ladungEntkoppeln(); ist auch nicht möglich. LKW und PKW sind zwar 'Geschwister' und 'Kinder' von Fahrzeug,
         // dieses Verhalten teilen sie allerdings nicht. Nur ein LKW kann das (nach dem als Vorlage verwendete UML-Diagramm).
 
-        Suv audiSuv = new Suv(); // Ist ein PKW ist ein Fahrzeug, in dieser Beziehung in pkw sowohl eine allgemeine (für SUV) als auch eine spezielle Klasse (von Fahrzeug)
+        Suv audiSuv = new Suv(); // Ist ein PKW, ist ein Fahrzeug, in dieser Beziehung in pkw sowohl eine allgemeine (für SUV) als auch eine spezielle Klasse (von Fahrzeug)
         audiSuv.setHersteller(audi);
         audiSuv.setSuvTyp(SuvTyp.MITTELKLASSE);
         audiSuv.set_4x4(true);

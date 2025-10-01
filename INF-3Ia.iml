@@ -9,5 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="io.github.classgraph" level="project" />
     <orderEntry type="library" name="JGoodies Forms" level="project" />
+    <orderEntry type="library" name="glassfish.javax.json" level="project" />
+    <orderEntry type="library" name="google.code.gson" level="project" />
   </component>
 </module>
