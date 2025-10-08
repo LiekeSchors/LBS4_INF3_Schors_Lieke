@@ -1,0 +1,28 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.7" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundlePackage": "com.tech.lbs4.javaapplication"
+	"i18n.bundleName": "currencycalc"
+	"i18n.keyPrefix": "DbManagementForm"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+			"$columnSpecs": "default:grow, default:grow, default:grow, default:grow"
+			"$rowSpecs": "fill:default:grow, default:grow, default:grow, default:grow"
+		} ) {
+			name: "this"
+			"font": new java.awt.Font( "Tahoma", 1, 14 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "tabelleHinzufügenLabel"
+				"text": "Tabelle hinzufügen"
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+				"gridX": 1
+				"gridY": 1
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}
